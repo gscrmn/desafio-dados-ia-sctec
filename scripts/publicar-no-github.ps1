@@ -119,7 +119,7 @@ foreach ($b in $extraBranches) {
         git push origin main
     }
 }
-git checkout main 2>$null
+$ErrorActionPreferencePrev = $ErrorActionPreference; $ErrorActionPreference = "SilentlyContinue"; git checkout main 2>&1 | Out-Null; $ErrorActionPreference = $ErrorActionPreferencePrev
 
 $finalBranches = (git branch -a | Measure-Object -Line).Lines
 $finalCommits = (git log --oneline | Measure-Object -Line).Lines
