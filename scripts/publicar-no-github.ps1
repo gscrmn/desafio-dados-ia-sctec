@@ -71,8 +71,12 @@ Write-Host ""
 
 # 4) Criar repositório no GitHub (se não existir) e conectar
 Write-Host "[4/6] Criando repositorio no GitHub (publico)..." -ForegroundColor Yellow
-$repoExists = gh repo view $REPO_NAME 2>&1
-if ($LASTEXITCODE -ne 0) {
+$ErrorActionPreferencePrev = $ErrorActionPreference
+$ErrorActionPreference = "SilentlyContinue"
+$null = gh repo view $REPO_NAME 2>&1
+$repoNaoExiste = ($LASTEXITCODE -ne 0)
+$ErrorActionPreference = $ErrorActionPreferencePrev
+if ($repoNaoExiste) {
     gh repo create $REPO_NAME --public --source=. --remote=origin --description "Desafio Pratico Dados/IA - SCTEC IA para DEVs"
     if ($LASTEXITCODE -ne 0) {
         Write-Host "  ERRO ao criar repositorio. Verifique se o nome ja existe ou tente outro." -ForegroundColor Red
