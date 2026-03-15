@@ -59,7 +59,7 @@ Os resultados (tabelas e figuras) são exibidos diretamente no notebook. Não é
 
 ## Vídeo pitch
 
-Vídeo pitch: [link]
+Vídeo pitch: https://youtu.be/tggRm7TqTH4
 
 ---
 
